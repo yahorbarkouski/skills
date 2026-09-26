@@ -1,4 +1,4 @@
-# barkouski-skills
+# skills
 
 Agent skills I wrote. Each skill is a folder with a `SKILL.md` that Claude Code, Codex, and other agents that read the skill format can load.
 
@@ -11,8 +11,8 @@ Agent skills I wrote. Each skill is a folder with a `SKILL.md` that Claude Code,
 Clone the repository, then link each skill you want into your agent's skills directory:
 
 ```bash
-git clone https://github.com/yahorbarkouski/barkouski-skills.git ~/barkouski-skills
-ln -s ~/barkouski-skills/skills/how-to-prompt ~/.claude/skills/how-to-prompt
+git clone https://github.com/yahorbarkouski/skills.git ~/yahorbarkouski-skills
+ln -s ~/yahorbarkouski-skills/skills/how-to-prompt ~/.claude/skills/how-to-prompt
 ```
 
 For Codex, link into `~/.codex/skills/` instead. A linked skill picks up changes with `git pull`.
