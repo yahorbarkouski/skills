@@ -24,7 +24,7 @@ This covers AGENTS.md, CLAUDE.md, and rules files that load at the start of ever
 
 ## Specs and requirements
 
-- State the behavior you expect and the constraints, not only the problem. Include what must keep working. Given only the problem, an agent tends to fix it and break what worked before.
+- Besides the problem, state the behavior you expect and the constraints. Include what must keep working. Given only the problem, an agent tends to fix it and break what worked before.
 - Name exact targets: which files, services, and environments are in scope, and what must not change. Vague targets are a common cause of out-of-scope changes, and warnings about possible damage don't make up for them.
 - Write acceptance criteria as checks. A check can be a command and its expected output, a test that fails before the change and passes after it, or a Given/When/Then statement.
 - Give each requirement one testable statement and a stable ID.
@@ -44,7 +44,7 @@ A plan should hold enough for someone to restart the work from the plan alone. I
 
 Update it like this:
 
-- Update the plan at each stopping point, not only at the end.
+- Update the plan at every stopping point.
 - When a decision changes, update every section it affects. Add a dated line to the decision log saying what changed and why. Don't leave the old plan text next to the new text.
 - Before you mark an item done, check it against a tool result, such as a test run or a command's output. A status written from memory is where false "done" marks come from.
 - Some status must be updated by agents but never rewritten, such as a list of features with pass or fail flags. Keep it in a structured file such as JSON, and say which fields may change. Models are less likely to rewrite JSON than Markdown.
@@ -61,9 +61,9 @@ When a session ends, or before context is compacted, write a note the next agent
 - the open items and the next step
 - details that are hard to rebuild, such as exact error messages, IDs, and commands, copied verbatim
 
-Summaries keep facts and drop restrictions, and each further round of summarizing drops more. Keep hard rules in a file loaded from disk every session, not only in the conversation or in a note.
+Summaries keep facts and drop restrictions, and each further round of summarizing drops more. Keep hard rules in a file loaded from disk every session.
 
 ## When length rules conflict
 
-- A task plan should be self-contained, so put what the task needs in the plan. A standing document, such as AGENTS.md or a design doc, should point to details instead of copying them, because copies go stale.
+- A task plan should be self-contained, so put what the task needs in the plan. A standing document, such as AGENTS.md or a design doc, should link to details, because copies go stale.
 - Long specs are hard to review, and reading a plan is not the same as checking it. Keep a spec to what its reviewer can check.

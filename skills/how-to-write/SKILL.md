@@ -11,7 +11,7 @@ Here is a sentence an agent might write at the end of a long session:
 
 To the writer it is complete. The reader doesn't know which queue is new, what was discussed, which TTL, or what the issue was. Written for the reader, it says:
 
-> Payment retries now go through the `payments-retry` queue instead of the main job queue. The main queue deletes messages after 15 minutes, which silently dropped any retry scheduled later than that. The new queue keeps messages for 24 hours.
+> Payment retries moved from the main job queue to the `payments-retry` queue. The main queue deletes messages after 15 minutes, which silently dropped any retry scheduled later than that. The new queue keeps messages for 24 hours.
 
 The writer can't see the gap, because after working on something you no longer remember what it was like not to know it. This is the main way documents fail, and agents fail this way more often than people, because everything in the session is context the reader never saw. So decide who will read, write for what they don't know, give the draft to a reader who has none of your context, and fill exactly the gaps it finds.
 
@@ -43,18 +43,19 @@ For each one, define it where it first appears, link to where it is defined, or 
 ## 3. Lead with the point, then show it
 
 - Put what the reader most needs in the first two or three sentences: the conclusion, the decision, or what the thing does and why it exists. Details follow, in the order the reader will need them.
-- Explain a new idea with a concrete example before the general rule. Use one real case with real names and numbers, typical rather than a toy, and small enough to hold in mind. Then state the rule the example illustrates.
+- Explain a new idea with a concrete example before the general rule. Use one real, typical case with real names and numbers, small enough to hold in mind. Then state the rule the example illustrates.
 - When the idea is a structure, a flow, a sequence, or how parts connect, draw it before you explain it in prose. In Markdown, use a Mermaid diagram or a small text sketch. Label every part with the name the text uses, show only what the text discusses, and follow the diagram with prose that walks through it. Skip the diagram when one sentence says the same thing.
 
 Short before-and-after examples of each are in [references/examples.md](references/examples.md).
 
 ## 4. Be concise without leaving gaps
 
-Concise means no wasted words, not fewer explanations.
+Concise means that every word does work. The reader still gets every explanation they need.
 
 - Cut what does no work: filler, restatement, generic advice, and explanations of what the reader already knows.
 - Never cut context the reader lacks to save space. A short document the reader can't follow costs more than a longer one, because the reader has to ask, guess, or go read the code.
 - Write whole sentences with their articles and verbs. Don't compress them into arrows, fragments, or private shorthand, which only you can decode.
+- Say what a thing is and does, concretely: name the behavior, the mechanism, or the number. Never frame it as a contrast with something else, as in "It is not X, it is Y", "It does not stop at X: it does Y", "not just X but Y", "not only X but also Y", "Y rather than X", or "No X, no Y, just Z". The reader has to picture the denied claim before discarding it, and the pattern reads as machine-written. Write a limit the reader needs as its own plain sentence, such as "The cache never stores passwords." To find these patterns, search the draft for "not", "just", "only", "rather than" and "instead of". An example is in [references/examples.md](references/examples.md#say-what-it-does).
 
 ## 5. Test it with a cold reader and fill what it couldn't follow
 
@@ -67,12 +68,12 @@ Run this loop after every draft, and after every change to an existing document.
 5. If the reader says a passage told it what it already knew, cut the passage.
 6. Run a new reader on the result, since a reader that has seen a draft has learned it. A round that led to any fix is never the last round. Stop when a round finds no new gaps and the restatement matches what you meant, which usually takes two or three rounds.
 
-If a flag comes only from the test reader's limits, such as a term that every real reader of this document knows, leave the text as it is. The loop checks that the page is clear, not that it is true: a reader without your sources can't catch a wrong fact, so check every claim against your sources yourself. The reader instructions and how to act on each kind of finding are in [references/reader-loop.md](references/reader-loop.md).
+If a flag comes only from the test reader's limits, such as a term that every real reader of this document knows, leave the text as it is. The loop checks clarity. A reader without your sources can't catch a wrong fact, so check every claim against your sources yourself. The reader instructions and how to act on each kind of finding are in [references/reader-loop.md](references/reader-loop.md).
 
 ## 6. When you change an existing document
 
 - Write the changed part for someone reading this version cold. Don't narrate the change with words like "now", "updated to", or "instead of before" unless the history matters to the reader. Keep history in a changelog or decision log.
-- Change a fact everywhere the document states it: the summary, other sections, tables, examples, and other documents that link here. Replace the old statement where it stands instead of appending a correction below it.
+- Change a fact everywhere the document states it: the summary, other sections, tables, examples, and other documents that link here. Replace the old statement where it stands, and never append a correction below it.
 - Keep what the request doesn't cover: rules, numbers, exceptions, reasons, open questions, and how certain each statement is. Rewrites tend to turn "may" into "will" and to drop the reasons behind rules.
 - When asked to shorten, reach the requested length. Cut filler, repetition, and restated background first, then say each rule, number, exception, reason, and open question in fewer words. The compare step will list those sentences as reworded; check that each still means the same, and don't restore the old wording. Propose removing a whole item only if the length still can't be reached.
 - Before you finish, run `python3 <this skill's directory>/scripts/doc_diff.py compare ORIGINAL EDITED` against a copy of the original. It lists what is missing, reworded, or moved, and whether hedges were lost. Account for each item.

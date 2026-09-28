@@ -1,6 +1,6 @@
 # Examples
 
-Each example shows one behavior. Copy the behavior, not the wording, the domain, or the length.
+Each example shows one behavior. Copy the behavior, and use your own wording, domain, and length.
 
 ## Put the missing context on the page
 
@@ -50,3 +50,17 @@ sequenceDiagram
 > The API never stores the token itself, only its hash, so a leaked database can't be used to reset passwords. A token works once and for 30 minutes.
 
 The prose after the diagram adds only what the diagram can't show: the reasons.
+
+## Say what it does
+
+A README opening and one of its headings, both built on a contrast:
+
+> It does not stop at finding records: it judges whether they prove the answer.
+
+> **Judged, not just retrieved.**
+
+The reader first pictures a tool that stops at finding records, then discards that picture to reach the claim. Said directly:
+
+> For each question, a judge model checks whether the saved records prove the answer, and the database returns those records as the proof.
+
+> **Answers come with their proof.**
