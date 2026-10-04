@@ -1,6 +1,6 @@
 ---
 name: how-to-run-llm-work
-description: Decide where LLM work runs, on the coding harness's own subagents or as an API call in code, and run harness work as a wide parallel fan-out. Use whenever a task needs model judgment over material you have now, such as judging which of several solutions is better, reviewing, categorizing or labeling records, extracting fields or structure from documents, summarizing sources, or drafting labels for a person to check, and before writing a script that imports an LLM SDK (Anthropic, OpenAI, Gemini, OpenRouter, LiteLLM) or asking the user for an API key. Covers telling one-off work from calls the product needs, why harness subagents cost less, choosing between inline work, one subagent, a fan-out, and a panel of judges, sharding items so that many subagents run at once, writing one brief for every shard, and merging and checking the results in code. Works in Claude Code, Codex, Cursor, and any harness that can start subagents.
+description: Decide where LLM work runs, on the coding harness's own subagents or as an API call in code, and run harness work as a wide parallel fan-out. Use when a task needs model judgment over many items, such as labeling, categorizing, extracting from, or summarizing a batch of records or documents, or when judging which of several solutions is better, and before writing a one-off script that imports an LLM SDK (Anthropic, OpenAI, Gemini, OpenRouter, LiteLLM) or asking the user for an API key. Skip it for one review or summary small enough to do yourself.
 ---
 
 # How to run LLM work
@@ -75,17 +75,5 @@ When subagents choose between solutions, designs, or outputs:
 - Hide where each candidate came from. Remove author, model, and branch names, and label the candidates A, B, and C. Models favor output they recognize as their own.
 - Compare two candidates at a time. Show half the judges A first and the other half B first, because models favor the answer shown first, and the longer answer. If every judge picks whichever candidate it saw first, count the pair as a tie. With more than four candidates, have each judge rank all of them, shuffle the order for every judge, and add up the ranks.
 - Ask each judge for its reasons before its verdict, quoting the code or text that decided it.
-
-## 5. Traps
-
-- A one-off script that imports an LLM SDK.
-- Asking the user for an API key for work that subagents could do.
-- Independent subagents started one after another.
-- One subagent for each short item.
-- Subagents sending their full results back as text.
-- Two subagents writing to the same file.
-- A subagent standing in for the product's model when measuring the product's prompt.
-- Merged results used without checking IDs and values.
-- One judge choosing between solutions.
 
 Worked examples, including cases where an API call is the right answer, are in [references/examples.md](references/examples.md). Before changing this skill, check the evidence for each rule in [references/sources.md](references/sources.md).

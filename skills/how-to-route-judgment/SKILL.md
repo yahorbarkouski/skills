@@ -1,6 +1,6 @@
 ---
 name: how-to-route-judgment
-description: Decide what makes each judgment in software, whether plain code, a decision model such as TypeSafe's Jev, an LLM, or a person. Use whenever code must interpret fuzzy input such as user messages, documents, emails, web pages, or free-text fields, and before writing a regex, keyword list, string match, or hand-tuned score to guess what something means, or before adding an LLM call. Covers what each kind of component is for, turning open questions into closed choices, asking several questions at once, routing on confidence by the cost of a wrong call, replacing heuristics and LLM calls in existing code, and measuring the change. Use when designing an AI feature or agent, or when fixing one that is slow, expensive, inconsistent, or full of special cases.
+description: Decide what makes each judgment in software: plain code, a decision model such as TypeSafe's Jev, an LLM, or a person. Use when code must interpret fuzzy input such as user messages, documents, emails, web pages, or free-text fields, before writing a regex, keyword list, string match, or hand-tuned score that guesses what text means, before adding an LLM call to a product, and when designing an AI feature or agent or fixing one that is slow, expensive, inconsistent, or full of special cases. Skip it for parsing a known format such as an ID, a date, or a command.
 ---
 
 # How to route judgment
@@ -64,14 +64,5 @@ Most judgments that look open-ended are a choice from a list once the parts are 
 3. Collect 50 to 200 real inputs and their correct answers. Correct answers can come from a person, or from the current system's outputs after a person reviews them.
 4. Run the old and the new version on the same inputs. Compare accuracy, latency, cost, and how many cases each sends to an LLM or a person. Set the thresholds from these results.
 5. Replace one judgment at a time, and keep the old path until the new one matches or beats it on the labeled inputs.
-
-## 6. Traps
-
-- A keyword list that grows with every bug report.
-- An LLM call whose answer is one of five labels.
-- One confidence threshold for every action.
-- Asking a decision model to write or extract text.
-- A model deciding the next step in a loop when the steps are fixed.
-- Trusting a cheap decision model without spot checks.
 
 Worked examples, including one where code is the right answer, are in [references/examples.md](references/examples.md). Before changing this skill, check the evidence for each rule in [references/sources.md](references/sources.md).

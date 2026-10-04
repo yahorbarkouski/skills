@@ -1,6 +1,6 @@
 ---
 name: how-to-run-long-jobs
-description: Run any long or costly job so that it runs on a small sample before the full dataset, saves every result the moment it arrives, shows its progress at any time, resumes after a stop without losing or repaying work, and stops itself when it breaks or reaches its budget. Use whenever you write, launch, or fix a script or command that loops over many items, calls a paid API more than a few times, or may run longer than about a minute, such as LLM or API calls over a dataset, benchmarks and evaluations, scrapes, data processing, embeddings, backfills, and migrations, and before running anything on a full dataset. Includes a dependency-free Python helper that appends each result, resumes, prints progress with spend and time left, enforces a budget, draws stratified samples, and reports any run's status from its files.
+description: Run a long or costly job so that it runs on a small sample first, saves each result the moment it arrives, shows its progress at any time, resumes without losing or repaying work, and stops itself when it breaks or reaches its budget. Use when you write, launch, or fix a script or command that loops over many items, calls a paid API more than a few times, or may run longer than about a minute, such as LLM or API calls over a dataset, benchmarks and evaluations, scrapes, embeddings, backfills, and migrations. Skip it for builds, test suites, package installs, and servers.
 ---
 
 # How to run long jobs
@@ -13,7 +13,7 @@ Every long or costly job follows four rules:
 3. It shows how far it has got, at any moment, to anyone who looks.
 4. It can stop and resume without losing work or paying for it twice, and it stops itself when it breaks or reaches its budget.
 
-The rules apply to any job that loops over many items, calls a paid API more than a few times, or may run longer than about a minute. Scale the effort to the job. A two-minute local loop needs results appended as they arrive and a progress line. A paid run over thousands of items needs every section.
+Scale the effort to the job. A two-minute local loop needs results appended as they arrive and a progress line. A paid run over thousands of items needs every section. A job that breaks one of these rules has a bug. Fix it when you see it, in your own code or in code you are asked to run.
 
 ## 1. Run it small first
 
@@ -33,7 +33,7 @@ The rules apply to any job that loops over many items, calls a paid API more tha
 - Write each result to durable storage the moment it completes: append one line to a JSON Lines file and flush it, or insert and commit one database row. Never collect results in a list, a dictionary, or a dataframe to write after the loop. A stopped or crashed run may lose the item in flight and nothing more.
 - Save the raw response next to anything you parse from it. A parsing bug can then be fixed and the parsing rerun from the saved responses, with no new calls.
 - Save failures as records too, with the item's ID and the error, so they are counted, visible, and retried on the next run. A failed call that returned no usage may still be billed, so record an estimate from the input you sent, and the spend never reads low.
-- When work runs in threads or async tasks, send every write through one lock or one writer, or give each worker its own file, so that lines never interleave. Either works, and the helper in section 7 uses a lock.
+- When work runs in threads or async tasks, send every write through one lock or one writer, or give each worker its own file, so that lines never interleave.
 - When work finishes in units bigger than one item, save the smallest unit you can. Commit a database backfill every few hundred rows, together with the last ID it processed. Save a batch API's job ID the moment the job is accepted, so a restarted process fetches the results and never submits and pays a second time.
 - Build summaries, tables, and reports in a separate step that reads the saved results. That step can run at any time, including halfway through a run.
 
@@ -44,8 +44,6 @@ The rules apply to any job that loops over many items, calls a paid API more tha
 - Keep each run in its own directory, and save in it the settings that affect results: the model, the parameters, a prompt version, and a code version. Raise the prompt or code version yourself whenever you change something that changes results, and leave it alone for changes that don't, such as logging. A change to any setting means a new directory, so results made with different settings never mix.
 
 ## 4. Show progress at all times
-
-Anyone, including you later, the user, or another agent, must be able to tell how far a job has got without stopping it.
 
 - Count the total before starting, so progress is a fraction of a known number. A job whose total can't be known in advance, such as a crawl, reports the count done and the rate.
 - Print one plain line at a fixed interval, such as every 15 seconds, and when the job ends. It gives items done out of the total, failures, the rate, the time left, and the money spent with the projected total:
@@ -98,19 +96,5 @@ with Run("runs/profiles-v2", config={"model": MODEL, "prompt": PROMPT_VERSION}, 
 ```
 
 `client` is an `anthropic.Anthropic()` client, `build_messages` builds the prompt for one lot, and `INPUT_PRICE` and `OUTPUT_PRICE` are the model's dollars per token. `Run` refuses to reuse a directory started with a different `config`. `todo()` skips the items already saved, and progress counts the items passed to it, so a run over a sample file reports the sample's size. With `limit`, the run ends as `finished: limit of 3 reached, 1997 left`, and the projected cost covers all the items. `save()` and `fail()` append and flush one line each and are safe to call from several threads. Every 15 seconds and at the end, `Run` prints the progress line, with the cost per item, and rewrites `progress.json`. It raises `RunStopped` after five failures in a row or when the directory's total spend reaches `max_cost`. Inside the `with` block, SIGTERM and Ctrl+C stop the run cleanly and record why, even for a job started in the background. For a job in another language, follow the same files, described in [references/layout.md](references/layout.md), and the status command works on it too.
-
-## 8. Traps
-
-Each of these is a bug. Fix it when you see it, in your own code or in code you are asked to run.
-
-- Results collected in memory and written after the loop.
-- A full run as the first run.
-- A test script that differs from the real job.
-- No progress output, or a progress bar that only redraws one line.
-- A job that can't resume, so stopping it means paying again.
-- A job that keeps going while every call fails.
-- A paid job with no record of what it cost, and no cap.
-- Parsing before saving, so a parsing bug throws away paid responses.
-- Results from different settings mixed in one file.
 
 Worked examples are in [references/examples.md](references/examples.md). Before changing this skill, check the basis for each rule in [references/sources.md](references/sources.md).

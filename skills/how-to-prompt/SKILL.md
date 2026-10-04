@@ -1,6 +1,6 @@
 ---
 name: how-to-prompt
-description: Write, review, and improve any text a model acts on, such as system prompts, per-request inputs, subagent briefs, tool descriptions, error and repair feedback, skills, and agent rules. Covers making a prompt self-sufficient, checking it sentence by sentence with a cold low-reasoning reader, rendering input data instead of dumping JSON, choosing between a goal brief and explicit policy, specifying output and examples, improving a prompt from its runs, and measuring changes. Use whenever you write or change a prompt, hand work to another agent, build an LLM call, or see an agent fail the same way twice.
+description: Write, review, or improve text a model acts on: system prompts, the input an LLM call sends, subagent briefs, tool descriptions, error and repair feedback, skills, and agent rules. Use when you write or change a prompt, brief a subagent on work it must do without your context, or see an agent fail the same way twice. Skip it for a quick search or lookup handed to a subagent.
 ---
 
 # How to prompt
@@ -14,8 +14,6 @@ Scale the effort to the prompt. A one-off brief to another agent needs sections 
 - **A capable agent with tools.** Give it the goal, why the goal matters, the materials and where they are, and the boundaries: what is out of scope, and what others are already doing. Leave the method to it unless the method is itself a requirement. A prescribed procedure narrows what a strong agent looks for.
 - **A cheap or no-reasoning model on a hot path.** Give it policy, meaning explicit rules for the decisions it would otherwise re-derive on every call. Examples: which check comes first, when an input is insufficient, when not to give up, what never to repeat. Rules like these can stand in for much of what reasoning would work out. Deduction specific to one case cannot be written down in advance, so leave that to reasoning or to code.
 - **A production call checked by a validator.** Layer the policy on a contract. Open with what the model produces, for whom, and what happens before and after this call. Describe every block of the input. State every validator rule the model can break, and what a violation costs. Keep tuned policy in its own section so rewrites keep it.
-
-If the project has its own prompt-authoring rules, in its agent instructions, contributing guide, or recorded decisions, they take precedence over this skill.
 
 ## 2. Put everything on the page
 

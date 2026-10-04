@@ -1,6 +1,6 @@
 ---
 name: how-to-write
-description: Write or revise any document another person or agent will read, such as design docs, specs, plans, READMEs, explanations, reports, pull request descriptions, runbooks, handoff notes, and AGENTS.md files. Covers naming the reader and what they already know, putting the context they lack on the page, leading with the point and a concrete example or diagram before the abstract explanation, staying concise without leaving gaps, and a feedback loop in which a fresh subagent reads the draft cold, reports exactly what it could not follow, and you elaborate only those points. Use whenever you write a document, or change one, for a reader who was not inside your session.
+description: Write or revise a document that another person or agent will read without your session's context, such as a design doc, spec, plan, README, report, pull request description, runbook, handoff note, or AGENTS.md file. Use when you draft, change, or shorten a document. Skip it for replies to the user in the chat.
 ---
 
 # How to write
