@@ -1,6 +1,6 @@
 ---
 name: how-to-verify-work
-description: Decide how to check your own work before you tell the user it is done, fixed, or working, and how much checking is enough. Before claiming, do the user's first real action yourself, through the path they use, with a check that can fail. Checks stay lean by default, a long loop such as a full test suite, an end-to-end run, or a paid benchmark runs only for a specific reason, and checks that cannot change your answer are skipped. Use before you report any change as done, fixed, verified, healthy, or ready, before you run tests, a benchmark, a screenshot, or a restart to confirm something, when a fix has failed more than once, and when the user asks "are you sure?" or "did you test it?".
+description: Decide how to check your own work before you tell the user it is done, fixed, or working, and how much checking is enough. Use before you report a change as done, fixed, verified, healthy, or ready, before you run tests, a benchmark, a screenshot, or a restart to confirm your own change, when a fix has failed more than once, and when the user asks "are you sure?" or "did you test it?". Skip it for a change with no behavior to check, such as a typo or a comment.
 ---
 
 # How to verify work

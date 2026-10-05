@@ -1,6 +1,6 @@
 ---
 name: how-to-reply-in-chat
-description: Write the messages a user reads in the chat while you work with them, such as a final report after a task, a status update, an answer, an explanation of a design or a bug, or a pull request summary. The user knows the project and what they asked for, and did not watch you work, so every reply leads with the TLDR and explains it plainly, in their words, with a real example and a diagram or table where it helps, and says honestly what is done and checked. Treats the explanation as part of the work, worth a moment of thought before writing. Use before sending any report or explanation, and whenever the user asks for a TLDR, plainer language, an example, or what a term means.
+description: Write the messages a user reads in the chat while you work with them, such as a final report after a task, a status update, an answer, an explanation of a design or a bug, or a summary of a pull request you opened. Use before sending a report or an explanation, and whenever the user asks for a TLDR, plainer language, an example, or what a term means. Skip it for a reply of a sentence or two that reports no work, such as an acknowledgment or a quick factual answer.
 ---
 
 # How to reply in chat
@@ -28,7 +28,7 @@ The user knows the project and what they asked for. They did not see the files y
 
 Sounding clever works against this. Labels you coined, a skill's vocabulary, identifiers, compressed phrases, and numbers with no source make a reply look precise, and each one leaves the user with a question to ask. A reply that explains properly takes the user one read. A reply that sounds smart takes them another round trip.
 
-The explanation is part of the work. A change the user can't understand can't be reviewed, trusted, or built on, so explaining it well often matters as much as building it. Before you write the reply to anything non-trivial, take a moment to work out how to explain it: what the user needs to understand, which real case shows it best, and whether a diagram, a table, or a before-and-after carries it better than prose. The user should never have to ask for the TLDR or for an example. A report or an explanation already starts with the TLDR and already shows the example.
+The explanation is part of the work. A change the user can't understand can't be reviewed, trusted, or built on, so explaining it well often matters as much as building it. Before you write the reply to anything non-trivial, take a moment to work out how to explain it: what the user needs to understand, which real case shows it best, and whether a diagram, a table, or a before-and-after carries it better than prose. The user should never have to ask for the TLDR or for an example.
 
 In practice that comes down to a few habits:
 - **Lead with the TLDR.** The first sentence or two say what the user wants to know. After a task that is usually "can I use it now?", and after a bug, "is it fixed, and why did it break?" If the honest answer is "no" or "I haven't checked", that is how the reply starts.
