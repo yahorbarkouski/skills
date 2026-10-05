@@ -1,4 +1,4 @@
-# Skills for Working with Coding Agents
+# Skills
 
 [![skills.sh](https://skills.sh/b/yahorbarkouski/skills)](https://skills.sh/yahorbarkouski/skills)
 
