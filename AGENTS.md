@@ -18,4 +18,5 @@ While you cut:
 
 - Read a rule's entry in the skill's `references/sources.md` before you cut the rule, and delete the entry when the rule goes.
 - Test the description by routing. Write about ten requests, half that should load the skill and half nearby ones that should skip it, and note where you expect each one to land. Give a fresh subagent the name and description of every installed skill, plus the requests, and ask which skills it would load for each request. Change the description until every request lands where you expected.
+- After you change a description, run `npx skills add . --list` from the repository root. It should find every skill and print no "Skipped" line. The skills CLI skips a skill whose frontmatter fails to parse, such as a description with a colon followed by a space. skills.sh lists only skills installed through that CLI, so a skipped skill never appears there.
 - Before you commit, give the user skill-cutter's report and the routing results.
