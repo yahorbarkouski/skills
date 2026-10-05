@@ -1,6 +1,6 @@
 ---
 name: how-to-route-judgment
-description: Decide what makes each judgment in software: plain code, a decision model such as TypeSafe's Jev, an LLM, or a person. Use when code must interpret fuzzy input such as user messages, documents, emails, web pages, or free-text fields, before writing a regex, keyword list, string match, or hand-tuned score that guesses what text means, before adding an LLM call to a product, and when designing an AI feature or agent or fixing one that is slow, expensive, inconsistent, or full of special cases. Skip it for parsing a known format such as an ID, a date, or a command.
+description: Decide what makes each judgment in software, whether plain code, a decision model such as TypeSafe's Jev, an LLM, or a person. Use when code must interpret fuzzy input such as user messages, documents, emails, web pages, or free-text fields, before writing a regex, keyword list, string match, or hand-tuned score that guesses what text means, before adding an LLM call to a product, and when designing an AI feature or agent or fixing one that is slow, expensive, inconsistent, or full of special cases. Skip it for parsing a known format such as an ID, a date, or a command.
 ---
 
 # How to route judgment

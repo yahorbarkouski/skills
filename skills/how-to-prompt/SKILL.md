@@ -1,6 +1,6 @@
 ---
 name: how-to-prompt
-description: Write, review, or improve text a model acts on: system prompts, the input an LLM call sends, subagent briefs, tool descriptions, error and repair feedback, skills, and agent rules. Use when you write or change a prompt, brief a subagent on work it must do without your context, or see an agent fail the same way twice. Skip it for a quick search or lookup handed to a subagent.
+description: Write, review, or improve text a model acts on, such as system prompts, the input an LLM call sends, subagent briefs, tool descriptions, error and repair feedback, skills, and agent rules. Use when you write or change a prompt, brief a subagent on work it must do without your context, or see an agent fail the same way twice. Skip it for a quick search or lookup handed to a subagent.
 ---
 
 # How to prompt
